@@ -15,6 +15,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        http.headers().frameOptions().sameOrigin();
+
         http.csrf().disable().
                 authorizeRequests()
                 .antMatchers("/actuator/**").permitAll()
@@ -24,6 +26,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/webjars/springfox-swagger-ui/**").permitAll()
                 .antMatchers("/swagger-resources/**").permitAll()
                 .antMatchers("/example/v1/**").permitAll()
+                .antMatchers("/h2/**").permitAll()
                 .antMatchers(HttpMethod.OPTIONS, "/example/v1/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
