@@ -1,6 +1,6 @@
 package com.systelab.kafka.service;
 
-import com.systelab.kafka.model.CustomerTypeAction;
+import com.systelab.kafka.model.CustomerTypeEvent;
 import com.systelab.kafka.repository.CustomerTypeRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,8 +20,8 @@ public class CustomerTypeService {
     }
 
     @KafkaListener(topics = "modulab", containerFactory = "customerTypeKafkaListenerContainerFactory")
-    public void listen(CustomerTypeAction action) {
-        System.out.println("Received Message in group group:high: " + action);
-        this.customerTypeRepository.save(action.getType());
+    public void listen(CustomerTypeEvent event) {
+        logger.info("Received Customer Type Event: " + event);
+        this.customerTypeRepository.save(event.getType());
     }
 }

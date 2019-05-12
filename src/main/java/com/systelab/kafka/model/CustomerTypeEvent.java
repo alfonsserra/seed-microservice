@@ -8,7 +8,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @Data
 @NoArgsConstructor
-public class CustomerTypeAction {
+public class CustomerTypeEvent {
     private String action;
     private CustomerType type;
 }

@@ -62,6 +62,11 @@ bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 -
 bin/kafka-console-producer.sh --broker-list localhost:9092 --topic modulab
 ```
 
+The message should be a valid representation of an CustomerTypeEvent, for example:
+
+```json
+{"action": "ADD", "type": {"id": "121212", "name": "Hola"}}
+```
 ## API
 
 You will find the swagger UI at http://localhost:8080/swagger-ui.html
