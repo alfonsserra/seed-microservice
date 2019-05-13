@@ -23,9 +23,12 @@ public class CustomerTypeService {
     @KafkaListener(topics = "modulab", containerFactory = "customerTypeKafkaListenerContainerFactory")
     public void listen(CustomerTypeEvent event) {
         logger.info("Received Customer Type Event: " + event);
-        if (event.getAction() == Action.CREATE || event.getAction() == Action.UPDATE)
+        if (event.getAction() == Action.CREATE || event.getAction() == Action.UPDATE) {
+            logger.info("Save Customer Type " + event.getPayload().getName());
             this.customerTypeRepository.save(event.getPayload());
-        else if (event.getAction() == Action.DELETE)
+        } else if (event.getAction() == Action.DELETE) {
+            logger.info("Delete Customer Type " + event.getPayload().getName());
             this.customerTypeRepository.delete(event.getPayload());
+        }
     }
 }

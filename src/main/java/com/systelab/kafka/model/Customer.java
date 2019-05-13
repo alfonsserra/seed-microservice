@@ -3,6 +3,7 @@ package com.systelab.kafka.model;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -15,7 +16,7 @@ import java.util.UUID;
 
 @Entity
 @Data
-@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "customer")
 public class Customer implements Serializable {
 
@@ -31,8 +32,4 @@ public class Customer implements Serializable {
 
     @Size(min = 1, max = 255)
     private String nameSpace;
-
-    public Customer() {
-    }
-
 }
