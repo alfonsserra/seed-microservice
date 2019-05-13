@@ -1,5 +1,6 @@
 package com.systelab.kafka.service;
 
+import com.systelab.kafka.model.Action;
 import com.systelab.kafka.model.CustomerTypeEvent;
 import com.systelab.kafka.repository.CustomerTypeRepository;
 import org.slf4j.Logger;
@@ -22,6 +23,9 @@ public class CustomerTypeService {
     @KafkaListener(topics = "modulab", containerFactory = "customerTypeKafkaListenerContainerFactory")
     public void listen(CustomerTypeEvent event) {
         logger.info("Received Customer Type Event: " + event);
-        this.customerTypeRepository.save(event.getType());
+        if (event.getAction() == Action.CREATE || event.getAction() == Action.UPDATE)
+            this.customerTypeRepository.save(event.getPayload());
+        else if (event.getAction() == Action.DELETE)
+            this.customerTypeRepository.delete(event.getPayload());
     }
 }
