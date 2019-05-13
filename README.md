@@ -65,8 +65,15 @@ bin/kafka-console-producer.sh --broker-list localhost:9092 --topic modulab
 The message should be a valid representation of an CustomerTypeEvent, for example:
 
 ```json
-{"action": "ADD", "type": {"id": "121212", "name": "Hola"}}
+{"action": "CREATE", "type": {"id": "121212", "name": "VIP"}}
 ```
+
+or 
+
+```json
+{"action": "DELETE", "type": {"id": "543", "name": "Discount"}}
+```
+
 ## API
 
 You will find the swagger UI at http://localhost:8080/swagger-ui.html
