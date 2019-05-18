@@ -39,7 +39,7 @@ public class CustomerService {
 
     public Customer addCustomer(Customer customer) {
         Customer savedCustomer = customerRepository.save(customer);
-        kafkaTemplate.send("customer", new CustomerEvent(Action.CREATE,savedCustomer));
+        kafkaTemplate.send("customer", new CustomerEvent(Action.CREATE, savedCustomer));
         return savedCustomer;
     }
 
@@ -47,15 +47,16 @@ public class CustomerService {
         return this.customerRepository.findById(id).map(existing -> {
             customer.setId(id);
             Customer savedCustomer = customerRepository.save(customer);
-            kafkaTemplate.send("customer", new CustomerEvent(Action.UPDATE,savedCustomer));
+            kafkaTemplate.send("customer", new CustomerEvent(Action.UPDATE, savedCustomer));
             return savedCustomer;
         }).orElseThrow(() -> new CustomerNotFoundException(id));
     }
 
-    public boolean removeCustomer(Customer customer) {
-        customerRepository.delete(customer);
-        kafkaTemplate.send("customer", new CustomerEvent(Action.DELETE,customer));
-
-        return true;
+    public boolean removeCustomer(UUID id) {
+        return this.customerRepository.findById(id).map(existing -> {
+            customerRepository.delete(existing);
+            kafkaTemplate.send("customer", new CustomerEvent(Action.DELETE, existing));
+            return true;
+        }).orElseThrow(() -> new CustomerNotFoundException(id));
     }
 }

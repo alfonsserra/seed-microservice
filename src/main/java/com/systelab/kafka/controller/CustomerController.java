@@ -13,7 +13,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.security.PermitAll;
@@ -49,37 +48,23 @@ public class CustomerController {
     }
 
     @ApiOperation(value = "Create a Customer", notes = "", authorizations = {@Authorization(value = "Bearer")})
-    @PostMapping("tenants/tenant")
+    @PostMapping("customers/customer")
     @ResponseStatus(HttpStatus.CREATED)
     public Customer createCustomer(@RequestBody @ApiParam(value = "Customer", required = true) @Valid Customer customer) {
         return customerService.addCustomer(customer);
 
     }
 
-/*
     @ApiOperation(value = "Create or Update (idempotent) an existing Customer", notes = "", authorizations = {@Authorization(value = "Bearer")})
-    @PutMapping("tenants/{uid}")
-    public ResponseEntity<Customer> updateTenant(@PathVariable("uid") UUID tenantId, @RequestBody @ApiParam(value = "Customer", required = true) @Valid Customer p) {
-        return this.customerService
-                .findById(tenantId)
-                .map(existing -> {
-                    p.setId(tenantId);
-                    Customer customer = this.customerService.save(p);
-                    URI selfLink = URI.create(ServletUriComponentsBuilder.fromCurrentRequest().toUriString());
-                    return ResponseEntity.created(selfLink).body(customer);
-                }).orElseThrow(() -> new CustomerNotFoundException(tenantId));
+    @PutMapping("customers/{uid}")
+    public Customer updateCustomer(@PathVariable("uid") UUID id, @RequestBody @ApiParam(value = "Customer", required = true) @Valid Customer customer) {
+        return this.customerService.updateCustomer(id, customer);
     }
-
 
     @ApiOperation(value = "Delete a Customer", notes = "", authorizations = {@Authorization(value = "Bearer")})
-    @DeleteMapping("tenants/{uid}")
-    public ResponseEntity<?> removeTenant(@PathVariable("uid") UUID tenantId) {
-        return this.customerService.findById(tenantId)
-                .map(tenant -> {
-                    customerService.removeTenant(tenant);
-                    customerRepository.delete(tenant);
-                    return ResponseEntity.noContent().build();
-                }).orElseThrow(() -> new CustomerNotFoundException(tenantId));
+    @DeleteMapping("customers/{uid}")
+    public Boolean removeCustomer(@PathVariable("uid") UUID id) {
+        return this.customerService.removeCustomer(id);
     }
-    */
+
 }
