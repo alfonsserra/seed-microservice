@@ -10,6 +10,9 @@ kafka:
   bootstrap-address: localhost:9092
   customer-type:
     group-id: customer-service
+security:
+  jwt:
+    client-secret: XY7kmzoNzl100
 spring:
   datasource:
     url: jdbc:h2:file:~/kafka-springboot-example

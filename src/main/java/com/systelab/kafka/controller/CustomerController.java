@@ -34,14 +34,12 @@ public class CustomerController {
 
     @ApiOperation(value = "Get all Customers", notes = "")
     @GetMapping("customers")
-    @PermitAll
     public Page<Customer> getAllCustomers(Pageable pageable) {
         return customerService.getCustomers(pageable);
     }
 
     @ApiOperation(value = "Get Customer", notes = "")
     @GetMapping("customers/{uid}")
-    @PermitAll
     public Customer getCustomer(@PathVariable("uid") UUID id) {
         return this.customerService.getCustomer(id).orElseThrow(() -> new CustomerNotFoundException(id));
     }
