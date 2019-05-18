@@ -53,8 +53,11 @@ bin/kafka-server-start.sh config/server.properties
 5.  Create a test topic to use for testing:
 
 ```bash
-bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic modulab
+bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic customer-type
+bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic customer
 ```
+
+> This commands are not mandatory as the application will create the topics if they do not exist.
 
 6.  Send some messages
 
@@ -65,13 +68,13 @@ bin/kafka-console-producer.sh --broker-list localhost:9092 --topic modulab
 The message should be a valid representation of an CustomerTypeEvent, for example:
 
 ```json
-{"action": "CREATE", "type": {"id": "121212", "name": "VIP"}}
+{"action": "CREATE", "payload": {"id": "121212", "name": "VIP"}}
 ```
 
 or 
 
 ```json
-{"action": "DELETE", "type": {"id": "543", "name": "Discount"}}
+{"action": "DELETE", "payload": {"id": "543", "name": "Discount"}}
 ```
 
 ## API
