@@ -14,6 +14,8 @@ security:
   jwt:
     client-secret: XY7kmzoNzl100
 spring:
+  application:
+    name: Customer Microservice
   datasource:
     url: jdbc:h2:file:~/kafka-springboot-example
     username: sa
@@ -25,7 +27,6 @@ spring:
     min-evictable-idle-time-millis: 1000
     min-idle: 8
     time-between-eviction-runs-millis: 1
-
   h2:
     console:
       enabled: true
