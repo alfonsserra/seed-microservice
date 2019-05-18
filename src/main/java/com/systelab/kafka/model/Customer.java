@@ -1,7 +1,6 @@
 package com.systelab.kafka.model;
 
 import io.swagger.annotations.ApiModelProperty;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
@@ -32,4 +31,9 @@ public class Customer implements Serializable {
 
     @Size(min = 1, max = 255)
     private String nameSpace;
+
+
+    @ManyToOne
+    @JoinColumn(name = "customertype_fk", referencedColumnName = "id", nullable = false)
+    private CustomerType type;
 }

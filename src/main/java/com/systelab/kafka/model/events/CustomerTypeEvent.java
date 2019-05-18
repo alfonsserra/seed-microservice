@@ -1,5 +1,6 @@
-package com.systelab.kafka.model;
+package com.systelab.kafka.model.events;
 
+import com.systelab.kafka.model.CustomerType;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 

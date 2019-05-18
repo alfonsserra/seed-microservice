@@ -1,7 +1,7 @@
 package com.systelab.kafka.service;
 
-import com.systelab.kafka.model.Action;
-import com.systelab.kafka.model.CustomerTypeEvent;
+import com.systelab.kafka.model.events.Action;
+import com.systelab.kafka.model.events.CustomerTypeEvent;
 import com.systelab.kafka.repository.CustomerTypeRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

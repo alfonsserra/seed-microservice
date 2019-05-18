@@ -1,9 +1,9 @@
 package com.systelab.kafka.service;
 
 
-import com.systelab.kafka.model.Action;
+import com.systelab.kafka.model.events.Action;
 import com.systelab.kafka.model.Customer;
-import com.systelab.kafka.model.CustomerEvent;
+import com.systelab.kafka.model.events.CustomerEvent;
 import com.systelab.kafka.repository.CustomerNotFoundException;
 import com.systelab.kafka.repository.CustomerRepository;
 import lombok.extern.slf4j.Slf4j;

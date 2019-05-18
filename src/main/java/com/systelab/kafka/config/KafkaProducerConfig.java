@@ -1,6 +1,6 @@
 package com.systelab.kafka.config;
 
-import com.systelab.kafka.model.CustomerEvent;
+import com.systelab.kafka.model.events.CustomerEvent;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.springframework.beans.factory.annotation.Value;

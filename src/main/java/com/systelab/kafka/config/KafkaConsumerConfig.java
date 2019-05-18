@@ -1,6 +1,6 @@
 package com.systelab.kafka.config;
 
-import com.systelab.kafka.model.CustomerTypeEvent;
+import com.systelab.kafka.model.events.CustomerTypeEvent;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.Deserializer;
 import org.apache.kafka.common.serialization.StringDeserializer;

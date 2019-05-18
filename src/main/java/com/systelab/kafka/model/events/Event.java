@@ -1,4 +1,4 @@
-package com.systelab.kafka.model;
+package com.systelab.kafka.model.events;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

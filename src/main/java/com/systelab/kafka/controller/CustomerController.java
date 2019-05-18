@@ -44,7 +44,6 @@ public class CustomerController {
     @PermitAll
     public Customer getCustomer(@PathVariable("uid") UUID id) {
         return this.customerService.getCustomer(id).orElseThrow(() -> new CustomerNotFoundException(id));
-
     }
 
     @ApiOperation(value = "Create a Customer", notes = "", authorizations = {@Authorization(value = "Bearer")})
@@ -52,7 +51,6 @@ public class CustomerController {
     @ResponseStatus(HttpStatus.CREATED)
     public Customer createCustomer(@RequestBody @ApiParam(value = "Customer", required = true) @Valid Customer customer) {
         return customerService.addCustomer(customer);
-
     }
 
     @ApiOperation(value = "Create or Update (idempotent) an existing Customer", notes = "", authorizations = {@Authorization(value = "Bearer")})
