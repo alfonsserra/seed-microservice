@@ -34,7 +34,7 @@ public class CustomerTest {
     @Test
     @WithMockUser(roles = "USER")
     public void testGetTenant() throws Exception {
-        mvc.perform(get("/example/v1/customer/{id}", "879-89-8989")
+        mvc.perform(get("/application/v1/customer/{id}", "879-89-8989")
                 .header("Authorization", "Bearer 5d1103e-b3e1-4ae9-b606-46c9c1bc915a"))
                 .andExpect(status().is2xxSuccessful());
     }

@@ -1,25 +1,25 @@
 
 
-#  Kafka Spring boot example
+# Customer microservice example
 
 
 ## Getting Started
 
-To get you started you can simply clone the `kafka-springboot-example` repository and install the dependencies:
+To get you started you can simply clone the `customer-microservice` repository and install the dependencies:
 
 ### Prerequisites
 
-You need [git][git] to clone the `kafka-springboot-example` repository.
+You need [git][git] to clone the `customer-microservice` repository.
 
 You will need [Java™ SE Development Kit 8][jdk-download] and [Maven][maven].
 
-### Clone `kafka-springboot-example`
+### Clone `customer-microservice`
 
-Clone the `kafka-springboot-example` repository using git:
+Clone the `customer-microservice` repository using git:
 
 ```bash
-git clone https://github.com/systelab/kafka-springboot-example.git
-cd kafka-springboot-example
+git clone https://github.com/systelab/customer-microservice.git
+cd customer-microservice
 ```
 
 ### Install Dependencies
@@ -36,7 +36,7 @@ To launch the server, simply run with java -jar the generated jar file.
 
 ```bash
 cd target
-java -jar kafka-springboot-example-1.0.jar
+java -jar customer-microservice-1.0.jar
 ```
 
 ## Getting Started with Kafka
