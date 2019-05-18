@@ -3,8 +3,7 @@ package com.systelab.kafka.service;
 
 import com.systelab.kafka.model.Customer;
 import com.systelab.kafka.repository.CustomerRepository;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -14,9 +13,9 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Service
+@Slf4j
 public class CustomerService {
 
-    Logger logger = LoggerFactory.getLogger(CustomerService.class);
     private CustomerRepository customerRepository;
 
     @Autowired

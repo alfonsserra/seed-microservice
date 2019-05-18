@@ -3,16 +3,15 @@ package com.systelab.kafka.service;
 import com.systelab.kafka.model.Action;
 import com.systelab.kafka.model.CustomerTypeEvent;
 import com.systelab.kafka.repository.CustomerTypeRepository;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 
 @Service
+@Slf4j
 public class CustomerTypeService {
 
-    private Logger logger = LoggerFactory.getLogger(CustomerTypeService.class);
     private CustomerTypeRepository customerTypeRepository;
 
     @Autowired
@@ -22,12 +21,12 @@ public class CustomerTypeService {
 
     @KafkaListener(topics = "modulab", containerFactory = "customerTypeKafkaListenerContainerFactory")
     public void listen(CustomerTypeEvent event) {
-        logger.info("Received Customer Type Event: " + event);
+        log.info("Received Customer Type Event: " + event);
         if (event.getAction() == Action.CREATE || event.getAction() == Action.UPDATE) {
-            logger.info("Save Customer Type " + event.getPayload().getName());
+            log.info("Save Customer Type " + event.getPayload().getName());
             this.customerTypeRepository.save(event.getPayload());
         } else if (event.getAction() == Action.DELETE) {
-            logger.info("Delete Customer Type " + event.getPayload().getName());
+            log.info("Delete Customer Type " + event.getPayload().getName());
             this.customerTypeRepository.delete(event.getPayload());
         }
     }
