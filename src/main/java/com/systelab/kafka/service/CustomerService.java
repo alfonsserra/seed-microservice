@@ -4,6 +4,7 @@ package com.systelab.kafka.service;
 import com.systelab.kafka.model.Action;
 import com.systelab.kafka.model.Customer;
 import com.systelab.kafka.model.CustomerEvent;
+import com.systelab.kafka.repository.CustomerNotFoundException;
 import com.systelab.kafka.repository.CustomerRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,15 +39,23 @@ public class CustomerService {
 
     public Customer addCustomer(Customer customer) {
         Customer savedCustomer = customerRepository.save(customer);
-        CustomerEvent event=new CustomerEvent();
-        event.setAction(Action.CREATE);
-        event.setPayload(savedCustomer);
-        kafkaTemplate.send("customer", event);
+        kafkaTemplate.send("customer", new CustomerEvent(Action.CREATE,savedCustomer));
         return savedCustomer;
+    }
+
+    public Customer updateCustomer(UUID id, Customer customer) {
+        return this.customerRepository.findById(id).map(existing -> {
+            customer.setId(id);
+            Customer savedCustomer = customerRepository.save(customer);
+            kafkaTemplate.send("customer", new CustomerEvent(Action.UPDATE,savedCustomer));
+            return savedCustomer;
+        }).orElseThrow(() -> new CustomerNotFoundException(id));
     }
 
     public boolean removeCustomer(Customer customer) {
         customerRepository.delete(customer);
+        kafkaTemplate.send("customer", new CustomerEvent(Action.DELETE,customer));
+
         return true;
     }
 }
