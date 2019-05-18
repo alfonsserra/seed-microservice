@@ -1,4 +1,4 @@
-package com.systelab.kafka.config;
+package com.systelab.kafka.config.authentication;
 
 import lombok.Getter;
 import lombok.Setter;

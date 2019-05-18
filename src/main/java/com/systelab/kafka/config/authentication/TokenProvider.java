@@ -1,6 +1,5 @@
 package com.systelab.kafka.config.authentication;
 
-import com.systelab.kafka.config.JwtConfig;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import org.springframework.beans.factory.annotation.Autowired;

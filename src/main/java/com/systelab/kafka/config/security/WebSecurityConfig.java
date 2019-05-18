@@ -1,4 +1,4 @@
-package com.systelab.kafka.config;
+package com.systelab.kafka.config.security;
 
 import com.systelab.kafka.config.authentication.JwtAuthenticationEntryPoint;
 import com.systelab.kafka.config.authentication.JwtAuthenticationFilter;

@@ -1,4 +1,4 @@
-package com.systelab.kafka.config;
+package com.systelab.kafka.config.kafka;
 
 import com.systelab.kafka.model.events.CustomerEvent;
 import org.apache.kafka.clients.producer.ProducerConfig;
