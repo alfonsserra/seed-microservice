@@ -1,7 +1,9 @@
 package com.systelab.kafka.service;
 
 
+import com.systelab.kafka.model.Action;
 import com.systelab.kafka.model.Customer;
+import com.systelab.kafka.model.CustomerEvent;
 import com.systelab.kafka.repository.CustomerRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,10 +20,10 @@ import java.util.UUID;
 public class CustomerService {
 
     private CustomerRepository customerRepository;
-    private KafkaTemplate<String, Customer> kafkaTemplate;
+    private KafkaTemplate<String, CustomerEvent> kafkaTemplate;
 
     @Autowired
-    public CustomerService(CustomerRepository customerRepository, KafkaTemplate<String, Customer> kafkaTemplate) {
+    public CustomerService(CustomerRepository customerRepository, KafkaTemplate<String, CustomerEvent> kafkaTemplate) {
         this.customerRepository = customerRepository;
         this.kafkaTemplate = kafkaTemplate;
     }
@@ -36,9 +38,11 @@ public class CustomerService {
 
     public Customer addCustomer(Customer customer) {
         Customer savedCustomer = customerRepository.save(customer);
-        kafkaTemplate.send("customer", savedCustomer);
+        CustomerEvent event=new CustomerEvent();
+        event.setAction(Action.CREATE);
+        event.setPayload(savedCustomer);
+        kafkaTemplate.send("customer", event);
         return savedCustomer;
-
     }
 
     public boolean removeCustomer(Customer customer) {

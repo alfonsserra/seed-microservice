@@ -1,6 +1,7 @@
 package com.systelab.kafka.config;
 
 import com.systelab.kafka.model.Customer;
+import com.systelab.kafka.model.CustomerEvent;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.springframework.beans.factory.annotation.Value;
@@ -21,7 +22,7 @@ public class KafkaProducerConfig {
     private String bootstrapAddress;
 
     @Bean
-    public ProducerFactory<String, Customer> producerFactory() {
+    public ProducerFactory<String, CustomerEvent> producerFactory() {
         Map<String, Object> configProps = new HashMap<>();
         configProps.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapAddress);
         configProps.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
@@ -30,7 +31,7 @@ public class KafkaProducerConfig {
     }
 
     @Bean
-    public KafkaTemplate<String, Customer> kafkaTemplate() {
+    public KafkaTemplate<String, CustomerEvent> kafkaTemplate() {
         return new KafkaTemplate<>(producerFactory());
     }
 }
