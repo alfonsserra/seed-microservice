@@ -82,6 +82,12 @@ or
 ```bash
 bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic customer --from-beginning
 ```
+8. Remove topic
+
+```bash
+bin/kafka-topics.sh --zookeeper localhost:2181 --delete --topic customer-type
+bin/kafka-topics.sh --zookeeper localhost:2181 --delete --topic customer
+```
     
 ## API
 
