@@ -5,21 +5,21 @@
 
 ## Getting Started
 
-To get you started you can simply clone the `customer-microservice` repository and install the dependencies:
+To get you started you can simply clone the `customer-microservice-example` repository and install the dependencies:
 
 ### Prerequisites
 
-You need [git][git] to clone the `customer-microservice` repository.
+You need [git][git] to clone the `customer-microservice-example` repository.
 
 You will need [Java™ SE Development Kit 8][jdk-download] and [Maven][maven].
 
-### Clone `customer-microservice`
+### Clone `customer-microservice-example`
 
-Clone the `customer-microservice` repository using git:
+Clone the `customer-microservice-example` repository using git:
 
 ```bash
-git clone https://github.com/systelab/customer-microservice.git
-cd customer-microservice
+git clone https://github.com/systelab/customer-microservice-example.git
+cd customer-microservice-example
 ```
 
 ### Install Dependencies
@@ -36,7 +36,7 @@ To launch the server, simply run with java -jar the generated jar file.
 
 ```bash
 cd target
-java -jar customer-microservice-1.0.jar
+java -jar customer-microservice-example-1.0.jar
 ```
 
 ## Getting Started with Kafka

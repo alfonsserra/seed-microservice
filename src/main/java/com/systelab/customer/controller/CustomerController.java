@@ -31,13 +31,13 @@ public class CustomerController {
         this.customerService = customerService;
     }
 
-    @ApiOperation(value = "Get all Customers", notes = "")
+    @ApiOperation(value = "Get all Customers", notes = "", authorizations = {@Authorization(value = "Bearer")})
     @GetMapping("customers")
     public Page<Customer> getAllCustomers(Pageable pageable) {
         return customerService.getCustomers(pageable);
     }
 
-    @ApiOperation(value = "Get Customer", notes = "")
+    @ApiOperation(value = "Get Customer", notes = "", authorizations = {@Authorization(value = "Bearer")})
     @GetMapping("customers/{uid}")
     public Customer getCustomer(@PathVariable("uid") UUID id) {
         return this.customerService.getCustomer(id).orElseThrow(() -> new CustomerNotFoundException(id));

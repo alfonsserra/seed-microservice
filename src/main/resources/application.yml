@@ -9,7 +9,7 @@ logging:
 kafka:
   bootstrap-address: localhost:9092
   customer-type:
-    group-id: customer-microservice
+    group-id: customer-microservice-example
 security:
   jwt:
     client-secret: XY7kmzoNzl100
@@ -18,7 +18,7 @@ spring:
   application:
     name: Customer Microservice
   datasource:
-    url: jdbc:h2:file:~/customer-microservice
+    url: jdbc:h2:file:~/customer-microservice-example
     username: sa
     password:
     driver-class-name: org.h2.Driver
