@@ -30,3 +30,10 @@ spring:
     console:
       enabled: true
       path: /h2
+
+management:
+  endpoints:
+    web:
+      expose: prometheus
+      exposure:
+        include: "*"
