@@ -20,8 +20,11 @@ import java.util.Map;
 @Configuration
 public class KafkaConsumerConfig {
 
-    @Value(value = "${kafka.bootstrapAddress}")
+    @Value(value = "${kafka.bootstrap-address}")
     private String bootstrapAddress;
+
+    @Value(value = "${kafka.customer-type.group-id}")
+    private String groupId;
 
     public <T> ConsumerFactory<String, T> consumerFactory(String groupId, Deserializer<T> deserializer) {
         Map<String, Object> props = new HashMap<>();
@@ -34,9 +37,9 @@ public class KafkaConsumerConfig {
 
     @Bean
     public ConcurrentKafkaListenerContainerFactory<String, CustomerTypeEvent> customerTypeKafkaListenerContainerFactory() {
-
+        System.out.println(groupId);
         ConcurrentKafkaListenerContainerFactory<String, CustomerTypeEvent> factory = new ConcurrentKafkaListenerContainerFactory<>();
-        factory.setConsumerFactory(this.consumerFactory("group:high", new JsonDeserializer<>(CustomerTypeEvent.class)));
+        factory.setConsumerFactory(this.consumerFactory(groupId, new JsonDeserializer<>(CustomerTypeEvent.class)));
         return factory;
     }
 }

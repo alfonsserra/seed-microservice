@@ -7,7 +7,9 @@ logging:
       springframework:
         web: DEBUG
 kafka:
-  bootstrapAddress: localhost:9092
+  bootstrap-address: localhost:9092
+  customer-type:
+    group-id: customer-service
 spring:
   datasource:
     url: jdbc:h2:file:~/kafka-springboot-example
