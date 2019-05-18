@@ -88,6 +88,16 @@ bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic customer
 bin/kafka-topics.sh --zookeeper localhost:2181 --delete --topic customer-type
 bin/kafka-topics.sh --zookeeper localhost:2181 --delete --topic customer
 ```
+
+9. Traces
+
+By default traces will be sent to Zipkin.
+
+Run a Zipkin server with the following command
+
+```bash
+docker run -d -p 9411:9411 openzipkin/zipkin
+```
     
 ## API
 

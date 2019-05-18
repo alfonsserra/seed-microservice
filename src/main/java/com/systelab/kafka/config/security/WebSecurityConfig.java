@@ -1,7 +1,7 @@
 package com.systelab.kafka.config.security;
 
-import com.systelab.kafka.config.authentication.JwtAuthenticationEntryPoint;
-import com.systelab.kafka.config.authentication.JwtAuthenticationFilter;
+import com.systelab.kafka.config.security.authentication.JwtAuthenticationEntryPoint;
+import com.systelab.kafka.config.security.authentication.JwtAuthenticationFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;

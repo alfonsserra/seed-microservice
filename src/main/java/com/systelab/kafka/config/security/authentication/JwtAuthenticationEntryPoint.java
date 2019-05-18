@@ -1,4 +1,4 @@
-package com.systelab.kafka.config.authentication;
+package com.systelab.kafka.config.security.authentication;
 
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;
