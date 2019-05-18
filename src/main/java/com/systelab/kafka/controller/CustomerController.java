@@ -6,15 +6,18 @@ import com.systelab.kafka.repository.CustomerNotFoundException;
 import com.systelab.kafka.service.CustomerService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.Authorization;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.security.PermitAll;
+import javax.validation.Valid;
 import java.util.UUID;
 
 @Api(value = "Customer management", description = "API for Customer management", tags = {"Customer management"})
@@ -33,33 +36,27 @@ public class CustomerController {
     @ApiOperation(value = "Get all Customers", notes = "")
     @GetMapping("customers")
     @PermitAll
-    public ResponseEntity<Page<Customer>> getAllCustomers(Pageable pageable) {
-        return ResponseEntity.ok(customerService.getCustomers(pageable));
+    public Page<Customer> getAllCustomers(Pageable pageable) {
+        return customerService.getCustomers(pageable);
     }
 
     @ApiOperation(value = "Get Customer", notes = "")
     @GetMapping("customers/{uid}")
     @PermitAll
-    public ResponseEntity<Customer> getCustomer(@PathVariable("uid") UUID id) {
-        return this.customerService.getCustomer(id).map(ResponseEntity::ok).orElseThrow(() -> new CustomerNotFoundException(id));
+    public Customer getCustomer(@PathVariable("uid") UUID id) {
+        return this.customerService.getCustomer(id).orElseThrow(() -> new CustomerNotFoundException(id));
 
     }
-/*
+
     @ApiOperation(value = "Create a Customer", notes = "", authorizations = {@Authorization(value = "Bearer")})
     @PostMapping("tenants/tenant")
-    public ResponseEntity<Customer> createTenant(@RequestBody @ApiParam(value = "Customer", required = true) @Valid TenantRequestInfo p) {
+    @ResponseStatus(HttpStatus.CREATED)
+    public Customer createCustomer(@RequestBody @ApiParam(value = "Customer", required = true) @Valid Customer customer) {
+        return customerService.addCustomer(customer);
 
-        Customer customer = customerService.newTenant(p);
-        if (customer !=null) {
-            Customer createdCustomer = this.customerRepository.save(customer);
-            URI uri = MvcUriComponentsBuilder.fromController(getClass()).path("/{id}").buildAndExpand(createdCustomer.getId()).toUri();
-            return ResponseEntity.created(uri).body(createdCustomer);
-        } else {
-            return ResponseEntity.badRequest().build();
-        }
     }
 
-
+/*
     @ApiOperation(value = "Create or Update (idempotent) an existing Customer", notes = "", authorizations = {@Authorization(value = "Bearer")})
     @PutMapping("tenants/{uid}")
     public ResponseEntity<Customer> updateTenant(@PathVariable("uid") UUID tenantId, @RequestBody @ApiParam(value = "Customer", required = true) @Valid Customer p) {

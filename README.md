@@ -77,6 +77,12 @@ or
 {"action": "DELETE", "payload": {"id": "543", "name": "Discount"}}
 ```
 
+7. Receive messages
+
+```bash
+bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic customer --from-beginning
+```
+    
 ## API
 
 You will find the swagger UI at http://localhost:8080/swagger-ui.html
