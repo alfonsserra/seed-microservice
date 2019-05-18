@@ -19,7 +19,7 @@ public class CustomerTypeService {
         this.customerTypeRepository = customerTypeRepository;
     }
 
-    @KafkaListener(topics = "modulab", containerFactory = "customerTypeKafkaListenerContainerFactory")
+    @KafkaListener(topics = "customer-type", containerFactory = "customerTypeKafkaListenerContainerFactory")
     public void listen(CustomerTypeEvent event) {
         log.info("Received Customer Type Event: " + event);
         if (event.getAction() == Action.CREATE || event.getAction() == Action.UPDATE) {
