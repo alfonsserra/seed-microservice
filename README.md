@@ -1,6 +1,6 @@
 
 
-# Patient microservice example
+# Seed for Systelab microservice projects
 
 
 This project is an application skeleton for a typical [Spring Boot][sboot] microservice. You can use it
@@ -110,9 +110,7 @@ bin/kafka-topics.sh --zookeeper localhost:2181 --delete --topic patient
 
 9. Traces
 
-By default traces will be sent to Zipkin.
-
-Run a Zipkin server with the following command
+By default traces will be sent to Zipkin. Run a Zipkin server with the following command
 
 ```bash
 docker run -d -p 9411:9411 openzipkin/zipkin
