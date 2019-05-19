@@ -8,17 +8,17 @@ logging:
         web: DEBUG
 kafka:
   bootstrap-address: localhost:9092
-  customer-type:
-    group-id: customer-microservice-example
+  center:
+    group-id: seed-microservice
 security:
   jwt:
     client-secret: XY7kmzoNzl100
 
 spring:
   application:
-    name: Customer Microservice
+    name: Patient Microservice
   datasource:
-    url: jdbc:h2:file:~/customer-microservice-example
+    url: jdbc:h2:file:~/seed-microservice
     username: sa
     password:
     driver-class-name: org.h2.Driver

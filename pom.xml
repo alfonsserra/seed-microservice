@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.systelab</groupId>
-  <artifactId>customer-microservice-example</artifactId>
+  <artifactId>seed-microservice</artifactId>
   <version>1.0</version>
   <packaging>jar</packaging>
 
@@ -13,7 +13,7 @@
     <version>2.1.4.RELEASE</version>
   </parent>
 
-  <name>customer-microservice-example</name>
+  <name>seed-microservice</name>
   <url>http://maven.apache.org</url>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

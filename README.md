@@ -1,25 +1,25 @@
 
 
-# Customer microservice example
+# Patient microservice example
 
 
 ## Getting Started
 
-To get you started you can simply clone the `customer-microservice-example` repository and install the dependencies:
+To get you started you can simply clone the `seed-microservice` repository and install the dependencies:
 
 ### Prerequisites
 
-You need [git][git] to clone the `customer-microservice-example` repository.
+You need [git][git] to clone the `seed-microservice` repository.
 
 You will need [Java™ SE Development Kit 8][jdk-download] and [Maven][maven].
 
-### Clone `customer-microservice-example`
+### Clone `seed-microservice`
 
-Clone the `customer-microservice-example` repository using git:
+Clone the `seed-microservice` repository using git:
 
 ```bash
-git clone https://github.com/systelab/customer-microservice-example.git
-cd customer-microservice-example
+git clone https://github.com/systelab/seed-microservice.git
+cd seed-microservice
 ```
 
 ### Install Dependencies
@@ -36,7 +36,7 @@ To launch the server, simply run with java -jar the generated jar file.
 
 ```bash
 cd target
-java -jar customer-microservice-example-1.0.jar
+java -jar seed-microservice-1.0.jar
 ```
 
 ## Getting Started with Kafka
@@ -53,8 +53,8 @@ bin/kafka-server-start.sh config/server.properties
 5.  Create a test topic to use for testing:
 
 ```bash
-bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic customer-type
-bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic customer
+bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic center
+bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic patient
 ```
 
 > This commands are not mandatory as the application will create the topics if they do not exist.
@@ -62,31 +62,31 @@ bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 -
 6.  Send some messages
 
 ```bash
-bin/kafka-console-producer.sh --broker-list localhost:9092 --topic modulab
+bin/kafka-console-producer.sh --broker-list localhost:9092 --topic center
 ```
 
-The message should be a valid representation of an CustomerTypeEvent, for example:
+The message should be a valid representation of Center, for example:
 
 ```json
-{"action": "CREATE", "payload": {"id": "121212", "name": "VIP"}}
+{"action": "CREATE", "payload": {"id": "121212", "name": "Center 1"}}
 ```
 
 or 
 
 ```json
-{"action": "DELETE", "payload": {"id": "543", "name": "Discount"}}
+{"action": "DELETE", "payload": {"id": "543", "name": "Center 2"}}
 ```
 
 7. Receive messages
 
 ```bash
-bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic customer --from-beginning
+bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic patient --from-beginning
 ```
 8. Remove topic
 
 ```bash
-bin/kafka-topics.sh --zookeeper localhost:2181 --delete --topic customer-type
-bin/kafka-topics.sh --zookeeper localhost:2181 --delete --topic customer
+bin/kafka-topics.sh --zookeeper localhost:2181 --delete --topic center
+bin/kafka-topics.sh --zookeeper localhost:2181 --delete --topic patient
 ```
 
 9. Traces
