@@ -133,3 +133,6 @@ You will find the swagger UI at http://localhost:8080/swagger-ui.html
 [prometheus]: https://prometheus.io/
 [sleuth]: https://spring.io/projects/spring-cloud-sleuth
 [zipkin]: https://zipkin.apache.org/
+[jwt]: https://jwt.io/
+[cors]: https://en.wikipedia.org/wiki/Cross-origin_resource_sharing
+[swagger]: https://swagger.io/
