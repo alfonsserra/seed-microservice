@@ -121,6 +121,22 @@ public class PatientTest {
     }
 
     @Test
+    @WithMockUser(roles = "ADMIN")
+    public void testUpdatePatient() throws Exception {
+        String id = "a98b8fe5-7cc5-4348-8f99-4860f5b84b13";
+
+        Patient patient = createPatient(id, "A");
+
+        when(mockPatientRepository.save(any())).thenReturn(patient);
+        when(mockPatientRepository.findById(any())).thenReturn(Optional.of(patient));
+
+        mvc.perform(put("/seed/v1/patients/{1}",id).header("Authorization", token)
+                .contentType(MediaType.APPLICATION_JSON).content(toJson(patient)))
+                .andDo(print())
+                .andExpect(status().is2xxSuccessful());
+    }
+
+    @Test
     @WithMockUser(roles = "User")
     public void testDeletePatient() throws Exception {
         String id = "a98b8fe5-7cc5-4348-8f99-4860f5b84b13";
