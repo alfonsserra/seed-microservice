@@ -31,10 +31,15 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws ServletException, IOException {
-        String header = request.getHeader(HttpHeaders.AUTHORIZATION);
-        if (header != null && header.startsWith(TOKEN_PREFIX)) {
-            Claims claims = tokenProvider.validateToken(header.replace(TOKEN_PREFIX, ""));
-            defineSecurityContext(claims.getSubject(), tokenProvider.getAuthorities(claims));
+        try {
+            String header = request.getHeader(HttpHeaders.AUTHORIZATION);
+            if (header != null && header.startsWith(TOKEN_PREFIX)) {
+                Claims claims = tokenProvider.validateToken(header.replace(TOKEN_PREFIX, ""));
+                defineSecurityContext(claims.getSubject(), tokenProvider.getAuthorities(claims));
+            }
+        } catch (Exception e) {
+            SecurityContextHolder.clearContext();
+            logger.error(e.getMessage(), e);
         }
         chain.doFilter(request, response);
     }
