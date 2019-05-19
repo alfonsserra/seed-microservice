@@ -3,6 +3,25 @@
 # Patient microservice example
 
 
+This project is an application skeleton for a typical [Spring Boot][sboot] microservice. You can use it
+to quickly bootstrap your projects and dev environment.
+
+The seed contains a Patient Management sample microservice and is preconfigured to install a full framework and a bunch of development and testing tools for instant development gratification.
+
+The app doesn't do too much, just shows how to use different standards and other suggested tools together:
+
+* Spring Boot
+* Spring Boot Web
+* Spring Boot Data JPA
+* Spring Boot Security
+* Spring Boot Test
+* [Kafka][kafka] for data synchronization 
+* [JWT][jwt]
+* [Swagger][swagger]
+* Spring Boot Actuator and [Micrometer][micrometer] for metrics with [Prometheus][prometheus]
+* [Sleuth][sleuth] and [Zipkin][zipkin] for distributed tracing
+
+
 ## Getting Started
 
 To get you started you can simply clone the `seed-microservice` repository and install the dependencies:
@@ -110,3 +129,7 @@ You will find the swagger UI at http://localhost:8080/swagger-ui.html
 [jdk-download]: http://www.oracle.com/technetwork/java/javase/downloads
 [JEE]: http://www.oracle.com/technetwork/java/javaee/tech/index.html
 [kafka]: http://kafka.apache.org/downloads.html
+[micrometer]: https://micrometer.io/
+[prometheus]: https://prometheus.io/
+[sleuth]: https://spring.io/projects/spring-cloud-sleuth
+[zipkin]: https://zipkin.apache.org/
