@@ -6,9 +6,11 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.UUID;
 
 @XmlRootElement
@@ -26,12 +28,23 @@ public class Patient implements Serializable {
     @Column(columnDefinition = "BINARY(16)")
     private UUID id;
 
+    @NotNull
+    @Size(min = 1, max = 255)
+    private String surname;
+
+    @NotNull
     @Size(min = 1, max = 255)
     private String name;
 
-    @Size(min = 1, max = 255)
-    private String nameSpace;
+    @Size(max = 255)
+    private String medicalNumber;
 
+    private String email;
+
+    private LocalDate dob;
+
+    @Embedded
+    private Address address;
 
     @ManyToOne
     @JoinColumn(name = "center_fk", referencedColumnName = "id", nullable = false)
