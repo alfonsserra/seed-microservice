@@ -34,15 +34,18 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         String header = request.getHeader(HttpHeaders.AUTHORIZATION);
         if (header != null && header.startsWith(TOKEN_PREFIX)) {
             Claims claims = tokenProvider.validateToken(header.replace(TOKEN_PREFIX, ""));
-            List<String> authorities = tokenProvider.getAuthorities(claims);
-            if (authorities.size() > 0) {
-                UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(claims.getSubject(), null,
-                        authorities.stream().map(SimpleGrantedAuthority::new).collect(Collectors.toList()));
-                SecurityContextHolder.getContext().setAuthentication(auth);
-            } else {
-                SecurityContextHolder.clearContext();
-            }
+            defineSecurityContext(claims.getSubject(), tokenProvider.getAuthorities(claims));
         }
         chain.doFilter(request, response);
+    }
+
+    private void defineSecurityContext(String subject, List<String> authorities) {
+        if (authorities.size() > 0) {
+            UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(subject, null,
+                    authorities.stream().map(SimpleGrantedAuthority::new).collect(Collectors.toList()));
+            SecurityContextHolder.getContext().setAuthentication(auth);
+        } else {
+            SecurityContextHolder.clearContext();
+        }
     }
 }
