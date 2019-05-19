@@ -36,7 +36,7 @@ public class SwaggerConfig {
 
     private ApiInfo metaData() {
         return new ApiInfo(
-                "Patient Microservice (API)",
+                "Seed Microservice (API)",
                 "Patient Microservice example.",
                 "V1.0",
                 "Terms of service",
