@@ -2,10 +2,13 @@ package com.systelab.seed.config.security.authentication;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 
 import java.io.Serializable;
+import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 
@@ -22,7 +25,6 @@ public class TokenProvider implements Serializable {
     }
 
 
-
     public Claims validateToken(String token) {
         return Jwts.parser()
                 .setSigningKey(jwtConfig.getClientSecret())
@@ -31,7 +33,16 @@ public class TokenProvider implements Serializable {
     }
 
     public List<String> getAuthorities(Claims claims) {
-        List<String> authorities = (List<String>) claims.get(AUTHORITIES_KEY);
-        return authorities;
+        return Arrays.asList(claims.get(AUTHORITIES_KEY).toString().split(","));
+    }
+
+    public String generateToken(String username, String roles, int validityInSeconds) {
+        return Jwts.builder()
+                .setSubject(username)
+                .claim(AUTHORITIES_KEY, roles)
+                .signWith(SignatureAlgorithm.HS256, jwtConfig.getClientSecret())
+                .setIssuedAt(new Date(System.currentTimeMillis()))
+                .setExpiration(new Date(System.currentTimeMillis() + validityInSeconds * 1000))
+                .compact();
     }
 }
