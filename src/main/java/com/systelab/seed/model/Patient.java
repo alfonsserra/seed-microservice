@@ -22,7 +22,7 @@ import java.util.UUID;
 public class Patient implements Serializable {
 
     @Id
-    @ApiModelProperty(notes = "The database generated tenant ID")
+    @ApiModelProperty(notes = "The database generated patient ID")
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Column(columnDefinition = "BINARY(16)")
