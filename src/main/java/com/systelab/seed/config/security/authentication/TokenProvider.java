@@ -6,14 +6,13 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 
-import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
 
 @Configuration
-public class TokenProvider implements Serializable {
+public class TokenProvider {
 
     public static final String AUTHORITIES_KEY = "scopes";
 
